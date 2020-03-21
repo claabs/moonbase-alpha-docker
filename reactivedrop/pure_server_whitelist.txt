@@ -6,10 +6,10 @@ whitelist
 	bin\matchmaking_ds.dll      allow_from_disk+check_crc
 
 	// By default, when in pure server mode, most content file types are only allowed to come from Steam.
-	materials\...		    allow_from_disk+check_crc
-	models\...                  allow_from_disk+check_crc
-	scripts\...                 allow_from_disk+check_crc
-	resource\...                allow_from_disk+check_crc
+	materials\...		    from_steam
+	models\...                  from_steam
+	scripts\...                 from_steam
+	resource\...                from_steam
 
 	// Disallow modify main files
 	*.*                         allow_from_disk+check_crc
