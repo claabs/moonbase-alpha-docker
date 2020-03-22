@@ -12,7 +12,19 @@ whitelist
 	resource\...                from_steam
 
 	// Disallow modify main files
-	*.*                         allow_from_disk+check_crc
+	pak01_000.vpk               allow_from_disk+check_crc
+	pak01_001.vpk               allow_from_disk+check_crc
+	pak01_002.vpk               allow_from_disk+check_crc
+	pak01_003.vpk               allow_from_disk+check_crc
+	pak01_004.vpk               allow_from_disk+check_crc
+	pak01_005.vpk               allow_from_disk+check_crc
+	pak01_006.vpk               allow_from_disk+check_crc
+	pak01_007.vpk               allow_from_disk+check_crc
+	pak01_008.vpk               allow_from_disk+check_crc
+	pak01_009.vpk               allow_from_disk+check_crc
+	pak01_010.vpk               allow_from_disk+check_crc
+	pak01_011.vpk               allow_from_disk+check_crc
+	pak01_dir.vpk               allow_from_disk+check_crc
 	
 	// Allow custom player models. Don't do CRC checks on them because the clients may all
 	// have different custom models and the server won't have them all.    
