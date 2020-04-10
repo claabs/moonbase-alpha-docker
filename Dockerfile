@@ -12,7 +12,7 @@ COPY bin/compile-sourcemod /usr/local/sbin/compile-sourcemod
 RUN /usr/local/sbin/compile-sourcemod
 
 # install anti cheat layer
-COPY --from=mithrand0/reactive-drop-anticheat:latest /root/reactivedrop/reactivedrop/ /root/reactivedrop/reactivedrop/
+COPY --from=mithrand0/reactive-drop-anticheat:latest /rd_anticheat.smx /root/reactivedrop/reactivedrop/addons/sourcemod/plugins/
 
 # copy files
 COPY etc/ /etc/
