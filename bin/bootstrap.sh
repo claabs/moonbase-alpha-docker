@@ -141,7 +141,7 @@ function start_translation_services()
         # start a webserver for translation services
         # TODO: need to create seperate users
         mkdir -p /run/php
-        php-fpm7.2
+        php-fpm7.3
         nginx
         memcached -u root -d
     fi
