@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true; do
+    find /root/.steam/SteamApps/common/reactivedrop/reactivedrop/logs -type f -name '*.log' -mtime +1 -delete
+    sleep 3600
+done
