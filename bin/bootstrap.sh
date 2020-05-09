@@ -223,6 +223,7 @@ while [[ true ]]; do
                 -port "${port}" \
                 -authkey "${srcds_authkey}" \
                 -nohltv \
+		-nomessagebox \
                 -tvdisable 1 \
                 -threads 1 \
                 +con_logfile /dev/stderr \
