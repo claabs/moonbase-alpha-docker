@@ -2,3 +2,4 @@ docker-compose.override.yml
 export/
 .idea/
 .last-build-version
+shared
