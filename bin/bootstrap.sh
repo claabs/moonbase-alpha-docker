@@ -133,17 +133,10 @@ function run_steam_client()
   wine ~/prefix32/drive_c/Program\ Files/Steam/Steam.exe
 }
 
-function start_translation_services()
+function write_translation_key()
 {
     if [[ "$yandex_translation_api_key" != "" ]]; then
         echo "$yandex_translation_api_key" > /opt/translation_key.txt
-
-        # start a webserver for translation services
-        # TODO: need to create seperate users
-        mkdir -p /run/php
-        php-fpm7.3
-        nginx
-        memcached -u root -d
     fi
 }
 
@@ -172,6 +165,9 @@ servers=$(set | grep "^rd\_server\_[0-9]\{1,\}\_port=[0-9]\{4,5\}$")
 
 # switch to reactive drop folder
 cd /root/reactivedrop || exit 1
+
+# install ora dll
+cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
 
 # remove some leftovers if present
 find ./reactivedrop -name '*.campaignsave' -or -name '*.log' -delete
