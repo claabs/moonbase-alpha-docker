@@ -37,7 +37,7 @@ steam-run-script install.server
 #ip=$(wget -q -O- "https://api.ipify.org/")
 
 # bind to the internal container id
-ip=$(ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d ' ' -f 2 | head -n 1)
+#ip=$(ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d ' ' -f 2 | head -n 1)
 
 # gui/console
 export DISPLAY=:0
@@ -151,8 +151,8 @@ function extract_sourcemod_plugins()
 # extract the sourcemod plugins
 extract_sourcemod_plugins
 
-# start translation api
-start_translation_services
+# translation api
+write_translation_key
 
 # run a persistent wine server during initialization
 /usr/bin/wineserver -k -p 60
@@ -167,7 +167,7 @@ servers=$(set | grep "^rd\_server\_[0-9]\{1,\}\_port=[0-9]\{4,5\}$")
 cd /root/reactivedrop || exit 1
 
 # install ora dll
-# cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
+cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
 
 # remove some leftovers if present
 find ./reactivedrop -name '*.campaignsave' -or -name '*.log' -delete
@@ -219,14 +219,14 @@ while [[ true ]]; do
                 -port "${port}" \
                 -authkey "${srcds_authkey}" \
                 -nohltv \
-		-nomessagebox \
+		        -nomessagebox \
                 -tvdisable 1 \
                 -threads 1 \
                 +con_logfile /dev/stderr \
                 +con_timestamp 1 \
                 +exec $config \
                 +sm_basepath $smbase \
-                +ip "${ip}" ${srcds_params}
+                ${srcds_params}
 
             # wait a bit before attempting to start the next server
             sleep $SLEEP_TIME
