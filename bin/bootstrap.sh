@@ -167,7 +167,7 @@ servers=$(set | grep "^rd\_server\_[0-9]\{1,\}\_port=[0-9]\{4,5\}$")
 cd /root/reactivedrop || exit 1
 
 # install ora dll
-cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
+# cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
 
 # remove some leftovers if present
 find ./reactivedrop -name '*.campaignsave' -or -name '*.log' -delete
