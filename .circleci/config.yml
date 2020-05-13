@@ -24,6 +24,12 @@ jobs:
           key: v1-last-build-{{ .Branch }}
           paths:
             - .last-build-version
+      - trigger_deploy:
+          name: Trigger deployment
+          command: |
+            if [[ "${DEPLOYMENT_HOOK}" != "" ]]; then
+              curl -s -X POST "{$DEPLOYMENT_HOOK}"
+            fi
 
 # workflow for this project
 workflows:
