@@ -22,7 +22,7 @@ RUN dpkg -i /tmp/external/*.deb && rm -rf /tmp/external
 RUN rm -rf /root/prefix32
 
 # upgrade wine
-RUN apt install -y --install-recommends winehq-staging:i386
+RUN apt install -y --install-recommends winehq-stable:i386
 
 # cleanup, enable after we are finished
 RUN apt-get -qq -y autoremove \
