@@ -24,7 +24,7 @@ jobs:
           key: v1-last-build-{{ .Branch }}
           paths:
             - .last-build-version
-      - trigger_deploy:
+      - run:
           name: Trigger deployment
           command: |
             if [[ "${DEPLOYMENT_HOOK}" != "" ]]; then
