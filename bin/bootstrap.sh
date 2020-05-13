@@ -36,8 +36,8 @@ steam-run-script install.server
 # get the ip address
 #ip=$(wget -q -O- "https://api.ipify.org/")
 
-# bind to the internal container id
-#ip=$(ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d ' ' -f 2 | head -n 1)
+# bind to the internal container ip
+ip=$(ifconfig | grep 'inet ' | grep -v '127.0.0.1' | cut -d ' ' -f 2 | head -n 1)
 
 # gui/console
 export DISPLAY=:0
@@ -60,6 +60,19 @@ function write_server_config()
 
         # write the var the the server config file
         echo "${var} ${value}" >> $file
+    done
+}
+
+function write_workshop_config()
+{
+    file=$1
+
+    truncate -s 0 $file
+
+    # look for other settings for this server
+    for item in $(set | grep '^workshop_' | cut -d '=' -f 1 | cut -d '_' -f 2); do
+        # write the var the the server config file
+        echo "rd_enable_workshop_item ${item}" >> $file
     done
 }
 
@@ -169,6 +182,9 @@ cd /root/reactivedrop || exit 1
 # install ora dll
 cp -f reactivedrop/bin/server.ora.dll reactivedrop/bin/server.dll
 
+# write workshop config
+write_workshop_config "reactivedrop/cfg/workshop.cfg"
+
 # remove some leftovers if present
 find ./reactivedrop -name '*.campaignsave' -or -name '*.log' -delete
 
@@ -222,6 +238,7 @@ while [[ true ]]; do
 		        -nomessagebox \
                 -tvdisable 1 \
                 -threads 1 \
+                +ip "${ip:-0.0.0.0}" \
                 +con_logfile /dev/stderr \
                 +con_timestamp 1 \
                 +exec $config \
