@@ -161,6 +161,16 @@ function extract_sourcemod_plugins()
     fi
 }
 
+function reschedule()
+{
+    proc=$1
+    pid=$(pgrep -f $proc)
+    if [[ "$pid" != "" ]]; then
+        echo "Scheduling priority for: ${proc} [${pid}]"
+        renice -n -15 $pid || true
+    fi
+}
+
 # extract the sourcemod plugins
 extract_sourcemod_plugins
 
@@ -169,6 +179,7 @@ write_translation_key
 
 # run a persistent wine server during initialization
 /usr/bin/wineserver -k -p 60
+reschedule wineserver
 
 # set ifs
 IFS=$'\n'
@@ -247,6 +258,7 @@ while [[ true ]]; do
 
             # wait a bit before attempting to start the next server
             sleep $SLEEP_TIME
+            reschedule "${port}"
          fi
     done
 

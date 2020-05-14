@@ -41,8 +41,8 @@ services:
 #      - "yandex_translation_api_key="
     networks:
       - network
-#    cap_add:
-#     - CAP_SYS_NICE
+    cap_add:
+      - CAP_SYS_NICE
 
   watchtower:
     image: containrrr/watchtower
